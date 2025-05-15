@@ -1,129 +1,128 @@
 'use client'
 
-import Link from 'next/link'
 import { useState, useEffect } from 'react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import Link from 'next/link'
+import Image from 'next/image'
+import { FaWhatsapp } from 'react-icons/fa'
 
-const navigation = [
-  { name: 'Início', href: '/' },
-  { name: 'Sobre', href: '#sobre' },
-  { name: 'Serviços', href: '#servicos' },
-  { name: 'Depoimentos', href: '#depoimentos' },
-  { name: 'Contato', href: '#contato' },
-]
-
-export default function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0)
+      setIsScrolled(window.scrollY > 20)
     }
+
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  const navLinks = [
+    { href: '/', label: 'Início' },
+    { href: '/sobre', label: 'Sobre nós' },
+    { href: '/servicos', label: 'Serviços' },
+    { href: '/equipe', label: 'Equipe' },
+    { href: '/blog', label: 'Blog' },
+    { href: '/contato', label: 'Contato' },
+  ]
+
   return (
-    <header className={`fixed w-full z-50 transition-all duration-300 ${
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${
       isScrolled ? 'bg-white shadow-md' : 'bg-transparent'
     }`}>
-      <nav className="container mx-auto flex items-center justify-between p-6" aria-label="Global">
-        <div className="flex lg:flex-1">
-          <Link 
-            href="/" 
-            className={`-m-1.5 p-1.5 text-2xl font-bold transition-colors duration-300 ${
-              isScrolled ? 'text-blue-900' : 'text-white'
-            }`}
-          >
-            DJ Consultoria
+      <div className="container mx-auto px-4">
+        <div className="flex justify-between items-center h-20">
+          {/* Logo */}
+          <Link href="/" className="flex items-center space-x-2">
+            <div className="relative w-12 h-12">
+              <Image
+                src="/images/logo.png"
+                alt="Consultoria DJ"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+            <span className="text-2xl font-heading font-bold text-primary">
+              Consultoria DJ
+            </span>
           </Link>
-        </div>
-        <div className="flex lg:hidden">
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="nav-link font-medium"
+              >
+                {link.label}
+              </Link>
+            ))}
+            <a
+              href="https://wa.me/557531990770"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary flex items-center space-x-2"
+            >
+              <FaWhatsapp className="text-xl" />
+              <span>+55 (75) 3199-0770</span>
+            </a>
+          </div>
+
+          {/* Mobile Menu Button */}
           <button
-            type="button"
-            className={`-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 transition-colors duration-300 ${
-              isScrolled ? 'text-gray-700' : 'text-white'
-            }`}
-            onClick={() => setMobileMenuOpen(true)}
+            className="md:hidden"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <span className="sr-only">Abrir menu principal</span>
-            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+            <svg
+              className="w-6 h-6 text-primary"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              {isMobileMenuOpen ? (
+                <path d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
           </button>
         </div>
-        <div className="hidden lg:flex lg:gap-x-12">
-          {navigation.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className={`text-sm font-semibold leading-6 transition-colors duration-300 ${
-                isScrolled 
-                  ? 'text-gray-900 hover:text-blue-600' 
-                  : 'text-white hover:text-gray-200'
-              }`}
-            >
-              {item.name}
-            </Link>
-          ))}
-        </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link
-            href="#contato"
-            className={`btn transition-colors duration-300 ${
-              isScrolled 
-                ? 'bg-blue-900 text-white hover:bg-blue-800'
-                : 'bg-white text-blue-900 hover:bg-gray-100'
-            }`}
-          >
-            Fale com um Especialista
-          </Link>
-        </div>
-      </nav>
-      
-      {/* Mobile menu */}
-      <div className={`lg:hidden ${mobileMenuOpen ? 'fixed inset-0 z-50' : 'hidden'}`}>
-        <div className="fixed inset-0 bg-black/20" aria-hidden="true" onClick={() => setMobileMenuOpen(false)} />
-        <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="-m-1.5 p-1.5 text-2xl font-bold text-blue-900">
-              DJ Consultoria
-            </Link>
-            <button
-              type="button"
-              className="-m-2.5 rounded-md p-2.5 text-gray-700"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <span className="sr-only">Fechar menu</span>
-              <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-            </button>
-          </div>
-          <div className="mt-6 flow-root">
-            <div className="-my-6 divide-y divide-gray-500/10">
-              <div className="space-y-2 py-6">
-                {navigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-              <div className="py-6">
+
+        {/* Mobile Navigation */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden bg-white">
+            <div className="px-2 pt-2 pb-3 space-y-1">
+              {navLinks.map((link) => (
                 <Link
-                  href="#contato"
-                  className="btn w-full text-center bg-blue-900 text-white hover:bg-blue-800"
-                  onClick={() => setMobileMenuOpen(false)}
+                  key={link.href}
+                  href={link.href}
+                  className="block px-3 py-2 nav-link font-medium"
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Fale com um Especialista
+                  {link.label}
                 </Link>
-              </div>
+              ))}
+              <a
+                href="https://wa.me/557531990770"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block px-3 py-2 btn-primary text-center mt-4"
+              >
+                <FaWhatsapp className="inline mr-2" />
+                +55 (75) 3199-0770
+              </a>
             </div>
           </div>
-        </div>
+        )}
       </div>
-    </header>
+    </nav>
   )
-} 
+}
+
+export default Navbar 

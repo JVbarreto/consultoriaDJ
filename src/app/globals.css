@@ -1,0 +1,224 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply font-body text-gray-900 bg-white;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading text-gray-900;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section {
+    @apply py-16 sm:py-24;
+  }
+
+  .heading {
+    @apply text-3xl sm:text-4xl font-bold text-gray-900 mb-4 animate-fade-in;
+  }
+
+  .subheading {
+    @apply text-xl text-gray-800 font-medium;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md text-base font-medium transition-all duration-300 animate-scale-in;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white px-6 py-3 rounded-md hover:bg-primary-light transition-colors duration-300 font-medium shadow-md hover:shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-primary border-2 border-primary px-6 py-3 rounded-md hover:bg-secondary transition-colors duration-300 font-medium shadow-md hover:shadow-lg;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  .nav-link {
+    @apply text-gray-800 hover:text-primary transition-colors duration-300;
+  }
+
+  .card {
+    @apply bg-white rounded-lg shadow-md p-8 hover:shadow-lg transition-all duration-300;
+  }
+
+  .text-content {
+    @apply text-gray-900 text-lg leading-relaxed;
+  }
+
+  .heading-section {
+    @apply text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-16 text-center;
+  }
+
+  .hero-text {
+    @apply text-white drop-shadow-lg;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .hero-subtitle {
+    @apply text-white/90 drop-shadow-md font-medium;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+  }
+}
+
+/* Estilos para o formulário */
+input, textarea {
+  @apply border-gray-300 rounded-md shadow-sm transition-all duration-300;
+}
+
+input:focus, textarea:focus {
+  @apply ring-2 ring-primary border-primary outline-none;
+}
+
+/* Cards e elementos interativos */
+.service-card {
+  @apply card p-6 hover:-translate-y-1;
+}
+
+.team-card {
+  @apply card overflow-hidden;
+}
+
+.team-card img {
+  @apply transition-transform duration-300;
+}
+
+.team-card:hover img {
+  @apply scale-110;
+}
+
+/* Hero Section */
+.hero-section {
+  @apply relative min-h-screen flex items-center justify-center overflow-hidden;
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+}
+
+.hero-content {
+  @apply relative z-10 text-center text-white;
+}
+
+.hero-overlay {
+  @apply absolute inset-0 bg-black/50;
+  backdrop-filter: blur(3px);
+}
+
+/* Animações de entrada */
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-up {
+  @apply opacity-0 animate-slide-up;
+}
+
+.scale-in {
+  @apply opacity-0 animate-scale-in;
+}
+
+/* Efeitos de hover */
+.hover-lift {
+  @apply transition-transform duration-300 hover:-translate-y-1;
+}
+
+.hover-grow {
+  @apply transition-transform duration-300 hover:scale-105;
+}
+
+/* Ícones animados */
+.icon-spin {
+  @apply transition-transform duration-300 hover:rotate-180;
+}
+
+.icon-bounce {
+  @apply transition-transform duration-300 hover:translate-y-[-2px];
+}
+
+/* Efeitos de foco */
+.focus-ring {
+  @apply focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none;
+}
+
+/* Gradientes e overlays */
+.gradient-bg {
+  @apply bg-gradient-to-r from-primary to-secondary;
+}
+
+.glass-effect {
+  @apply bg-white/10 backdrop-blur-lg;
+}
+
+/* Responsividade */
+@media (max-width: 640px) {
+  .container {
+    @apply px-4;
+  }
+  
+  .heading {
+    @apply text-2xl;
+  }
+  
+  .subheading {
+    @apply text-lg;
+  }
+}
+
+/* Estilos para links */
+.link {
+  @apply text-blue-600 hover:text-blue-800 transition-colors duration-300;
+}
+
+/* Estilos para ícones */
+.icon {
+  @apply w-6 h-6 text-blue-600;
+}
+
+/* Estilos para a seção de estatísticas */
+.stat-card {
+  @apply bg-white p-6 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300;
+}
+
+/* Estilos para a seção de contato */
+.contact-form {
+  @apply bg-white p-8 rounded-lg shadow-sm;
+}
+
+.contact-info {
+  @apply bg-white p-6 rounded-lg shadow-sm;
+}
+
+/* Estilos para botões sociais */
+.social-link {
+  @apply text-gray-600 hover:scale-110 transition-all duration-300;
+} 
