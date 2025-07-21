@@ -9,14 +9,19 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#0A2647', // azul-marinho
-          light: '#144272',
-          dark: '#061A30',
+          DEFAULT: '#1A1F71', // azul-marinho
+          light: '#2C327A',
+          dark: '#10144A',
         },
         secondary: {
-          DEFAULT: '#F8F9FA', // cinza claro
-          dark: '#E9ECEF',
+          DEFAULT: '#444444', // cinza escuro
+          light: '#666666',
+          dark: '#222222',
         },
+        gold: {
+          DEFAULT: '#C8A165', // dourado suave
+        },
+        white: '#FFFFFF',
       },
       fontFamily: {
         heading: ['var(--font-playfair)', 'serif'],

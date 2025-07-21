@@ -1,21 +1,21 @@
-import type { Metadata } from 'next'
-import { Playfair_Display, Roboto } from 'next/font/google'
-import './globals.css'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
+import type { Metadata } from 'next';
+import { Playfair_Display, Lato } from 'next/font/google';
+import './globals.css';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-playfair',
   display: 'swap',
-})
+});
 
-const roboto = Roboto({
-  weight: ['300', '400', '500', '700'],
+const lato = Lato({
+  weight: ['300', '400', '700', '900'],
   subsets: ['latin'],
-  variable: '--font-roboto',
+  variable: '--font-lato',
   display: 'swap',
-})
+});
 
 export const metadata: Metadata = {
   title: 'Consultoria Jurídica e Contábil | Seu Negócio em Boas Mãos',
@@ -41,12 +41,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="pt-BR" className={`${playfair.variable} ${roboto.variable}`}>
+    <html lang="pt-BR" className={`${playfair.variable} ${lato.variable}`}>
       <body className="flex flex-col min-h-screen">
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />
       </body>
     </html>
-  )
+  );
 } 
