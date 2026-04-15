@@ -23,7 +23,7 @@ export default function Blog() {
             height="480"
             frameBorder="0"
             scrolling="no"
-            allowTransparency="true"
+            allowTransparency={true}
             allow="encrypted-media"
             title="Última publicação do Instagram"
             style={{ borderRadius: '12px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}
